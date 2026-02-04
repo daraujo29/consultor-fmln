@@ -1,0 +1,10 @@
+# --- SEGURIDAD CRÍTICA ---
+.streamlit/secrets.toml
+# (Esto evita que tu API Key se publique por error)
+
+# --- BASURA DEL SISTEMA ---
+__pycache__/
+*.pyc
+venv/
+.env
+.DS_Store
