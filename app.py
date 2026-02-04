@@ -5,8 +5,17 @@ import os
 import time
 
 # --- 1. CONFIGURACIÓN ---
-API_KEY = "AIzaSyB_rmWA_I2uOzzUQFowPqecuxQ0Nj3KYjY"
-client = genai.Client(api_key=API_KEY)
+try:
+    # Intenta leer la llave desde los secretos (Nube o Local seguro)
+    api_key = st.secrets["GOOGLE_API_KEY"]
+except FileNotFoundError:
+    # Por si acaso no encuentra el archivo
+    st.error(
+        "❌ No se encontró la API Key. Asegurate de configurar .streamlit/secrets.toml"
+    )
+    st.stop()
+
+client = genai.Client(api_key=api_key)
 
 # Modelo estable
 MODELO_ELEGIDO = "gemini-flash-latest"
